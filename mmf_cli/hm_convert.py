@@ -104,27 +104,28 @@ class HMConverter:
         self.decompress_zip(
             dest, fname=os.path.basename(src),
         )
-
-        phase_one = self.assert_files(os.path.join(images_path, "data"))
+      
+        phase_one = self.assert_files(os.path.join(images_path, "hateful_memes"))
 
         annotations_path = os.path.join(base_path, "annotations")
         PathManager.mkdirs(annotations_path)
         annotations = (
             self.JSONL_PHASE_ONE_FILES
+
             if phase_one is True
             else self.JSONL_PHASE_TWO_FILES
         )
 
         for annotation in annotations:
             print(f"Moving {annotation}")
-            src = os.path.join(images_path, "data", annotation)
+            src = os.path.join(images_path, "hateful_memes", annotation)
             dest = os.path.join(annotations_path, annotation)
             move(src, dest)
 
         images = self.IMAGE_FILES
 
         for image_file in images:
-            src = os.path.join(images_path, "data", image_file)
+            src = os.path.join(images_path, "hateful_memes", image_file)
             if PathManager.exists(src):
                 print(f"Moving {image_file}")
             else:
