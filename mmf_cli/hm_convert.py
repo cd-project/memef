@@ -105,7 +105,7 @@ class HMConverter:
             dest, fname=os.path.basename(src),
         )
 
-        phase_one = self.assert_files(os.path.join(images_path, "hateful_memes"))
+        phase_one = self.assert_files(os.path.join(images_path, "data"))
 
         annotations_path = os.path.join(base_path, "annotations")
         PathManager.mkdirs(annotations_path)
